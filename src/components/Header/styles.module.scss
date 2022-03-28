@@ -1,0 +1,21 @@
+.header{
+    background-color: blue;
+    height: 50px;
+    width: 100%;
+ 
+    a{  
+        text-decoration: none;
+        float:right;
+        height: 100%;
+        padding: 15px;
+        background-color: red;
+        color: white;
+    }
+    a:hover{
+        background-color: green;
+    }
+
+}
+.teste{
+    background-color: white;
+}
