@@ -1,21 +1,27 @@
 import Link from 'next/link';
 import styles from './styles.module.scss';
 import { useRouter } from 'next/router'
+import { useContext, useEffect } from 'react';
+import { UserContext } from '../../contexts'
 
 export function Header(){
+    const { state } = useContext(UserContext)
     const router = useRouter()
     const style = {
-        marginRight: 10,
-        display: router.pathname === "/login" ? 'none':'',
+        display: state.permissao === "" ? 'none':'',
       }
     return(
         <>
+        {state.permissao === ""? "":
         <div className={styles.header} style={style}> 
-            <Link href='https://japagerencia.vercel.app/historico'><a>Historico</a></Link>
-            <Link href='https://japagerencia.vercel.app/atualizar'><a>Atualizar Estoque</a></Link>
-            <Link href='https://japagerencia.vercel.app/compra'><a>Realizar Comprar</a></Link>
-        </div>
-        <div className={styles.teste}></div>
+            <h1>{state.usuario}</h1>
+            <div className={styles.links}>
+                <Link href='/'><a>Inicio</a></Link>
+                <Link href='/compra'><a>Realizar Comprar</a></Link>
+                <Link href='/atualizar'><a>Atualizar Estoque</a></Link>
+                <Link href='/historico'><a>Historico</a></Link>
+            </div>
+        </div>}
         </>
     )
 }   

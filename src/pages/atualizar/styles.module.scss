@@ -1,0 +1,40 @@
+.produtosContainer{
+    width: 80%;
+    margin: 5% 10%;
+    .listaProdutos{
+        div{
+            border: 1px solid black;
+            float: left;
+            text-align: center;
+            background-color: aqua;
+            height: 1.5rem;
+        }
+        .nomeDoProduto{
+            width: 72%;
+            
+        }
+        .quantDoProduto{
+            width: 13%;
+            
+        }
+        .valorDoProduto{
+            width: 12%;
+        }
+        .divButao{
+            width: 3%;
+
+            .botaoAtualizarProduto{
+                height: 100%;
+                width: 100%;
+                border: none;
+                cursor: pointer;
+                img{
+                    width: 60%;
+                }
+            }
+        }
+    }
+    .listaProdutos:first-child{
+        font-weight: bold;
+    }
+}

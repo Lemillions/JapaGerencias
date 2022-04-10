@@ -1,23 +1,27 @@
 import React, { useState } from "react"
 import styles from './styles.module.scss'
 import axios from 'axios'
+import { useRouter } from 'next/router';
 import { useContext } from 'react';
-import { UserContext } from '../_app'
+import { UserContext } from '../../contexts/index'
 
 export default function Login(){
-
+    const router = useRouter();
     interface formLogin{
         user:string
         senha:string
     }   
-
+ 
     const [formLogin, setFormLogin] = useState({
         user:"",
         senha:""
 })
 
-const { value, setValue} = useContext(UserContext)
+    const { state, setState} = useContext(UserContext)
 
+    if(state.permissao != ""){
+        router.push('/')
+    }
     const handleLogin = (e:any) => {
         setFormLogin({
             ...formLogin,
@@ -35,10 +39,15 @@ const { value, setValue} = useContext(UserContext)
             setError("")
             axios.post('https://API-piton.mvsantos2003.repl.co', dadosLogin)
             .then(function (response: { data: any }){
-                if(response.data == "Errado"){
+                const { data } = response;
+                if(data == "Errado"){
                     setError("User ou senha incorretos")
                 }else{
-                    setValue(response.data)
+                    setState({usuario:data.usuario,
+                              permissao:data.permisao,
+                              historico:data.historico})
+                    console.log(state)
+                    router.push('/')
                 }
             })
             .catch(function (error: any) {
@@ -50,7 +59,7 @@ const { value, setValue} = useContext(UserContext)
 
     return(
         <div className={styles.loginContainer}>
-            <h1>ENTRAR</h1>
+            <h1>{state.usuario}</h1>
             <input value={formLogin.user} onChange={(e)=>{handleLogin(e)}} type="text" name="user" placeholder="Usuario"/>
             <input value={formLogin.senha} onChange={(e)=>{handleLogin(e)}}  type="password" name="senha" placeholder="Senha"/><br/>
             <button onClick={()=>{logar(formLogin)}}>LOGIN</button>

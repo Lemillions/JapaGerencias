@@ -2,17 +2,29 @@
     background-color: blue;
     height: 50px;
     width: 100%;
- 
-    a{  
-        text-decoration: none;
-        float:right;
-        height: 100%;
-        padding: 15px;
-        background-color: red;
-        color: white;
+    
+    h1{
+        width: 70%; 
     }
-    a:hover{
-        background-color: green;
+    .links{  
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 50px;
+        background-color: blue;
+        color: white;
+        padding-top: 0.95rem;
+        a{
+            margin-right: 0px;
+            text-decoration: none;
+            color: white;
+            padding: 1.1rem;
+            margin-top: 17px;
+        }
+        a:hover{
+            background-color: white;
+            color: blue ;
+        }
     }
 
 }

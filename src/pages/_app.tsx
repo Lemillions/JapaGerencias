@@ -1,19 +1,27 @@
 import type { AppProps } from 'next/app'
+import { useRouter } from 'next/router'
+import { useContext, useEffect } from 'react';
 import { Header } from '../components/Header'
 import '../styles/global.scss';
-import { createContext, useState } from "react";
-
-export const UserContext = createContext({} as any)
+import { UsuarioProvider } from '../contexts/index'
+import { UserContext } from '../contexts/index'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const [value, setValue] = useState("AAAAA")
+  const router = useRouter()
+  const { state, setState} = useContext(UserContext)
+
+  useEffect(() => {
+    if(state.permissao == ""){
+      router.push('/login');
+    }
+  }, [])
+
   return(
-    <>
-      <UserContext.Provider value={{value, setValue}}>
+      <UsuarioProvider>
+        <noscript>É necessario javascript ativado pra esse site funcionar</noscript>
         <Header />
         <Component {...pageProps} />
-      </UserContext.Provider>
-    </>
+      </UsuarioProvider>
   ) 
 }
 
