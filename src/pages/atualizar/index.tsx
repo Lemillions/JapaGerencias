@@ -19,10 +19,8 @@ type Modal = {
 }
 
 export default function Atualizar(props: AtualizarProps){
-  const { data } = axios.get('https://api-piton.mvsantos2003.repl.co/produtos')
-  const produtos = props.produtos;
-  console.log(produtos)
 
+  const [produtos, setProdutos] = useState(props.produtos)
   const [modal, setModal] = useState<Modal>({"produtoModal":{"nome":"","quantidade":0,"valor":0},estado:false})
   const [modalForm, setModalForm] = useState<ProdutoInfos>({"nome":"","quantidade":0,"valor":0})
 
@@ -31,13 +29,14 @@ export default function Atualizar(props: AtualizarProps){
   }
 
   const atualizarModal = (nome:any) => {
-      axios.post('https://API-piton.mvsantos2003.repl.co/produtos', {nome:modalForm.nome, quantidade:modalForm.quantidade, valor:modalForm.quantidade, original:nome})
+      axios.post('https://API-piton.mvsantos2003.repl.co/produtos', {nome:modalForm.nome, quantidade:modalForm.quantidade, valor:modalForm.valor, original:nome})
       .then((response)=>{
-        console.log(response.data)
+        setProdutos(response.data)
       })
       .catch((erro)=>{
         alert(erro)
       })
+      setModal({"produtoModal":modal.produtoModal, estado:!modal.estado})
   }
 
   const changeModalForm = (e:any) => {
@@ -81,6 +80,7 @@ export default function Atualizar(props: AtualizarProps){
           )
         })
       }
+      aaa
     </div>
     </>
   )
