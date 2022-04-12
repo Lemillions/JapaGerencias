@@ -1,6 +1,6 @@
 .produtosContainer{
     width: 80%;
-    margin: 5% 10%;
+    margin: 0% 10%;
     .listaProdutos{
         div{
             border: 1px solid black;
@@ -11,7 +11,7 @@
         }
         .nomeDoProduto{
             width: 72%;
-            
+            overflow: hidden;
         }
         .quantDoProduto{
             width: 13%;
@@ -39,6 +39,72 @@
     }
 }
 
+.botaoAdicionar{
+    border: none;
+    border-radius: 4rem;
+    color: white;
+    background-color: greenyellow  ;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 1.5vw;
+    margin: 1rem 42vw;
+    cursor: pointer;
+}
+.botaoAdicionar:hover{
+    color: green;
+}
+
 .modal{
+    position: fixed;
+    margin: 5vh 25vw;
+    width: 50vw;
+    height: 70vh;
+    background-color: white;
+    border-radius: 3px;
+    text-align: center;
+    z-index: 2;
+    h1{
+        padding: 10px;
+        font-size: 16px;
+    }
+    
+    input{  
+        width: 35vw;
+        height: 10vh;
+        padding: 3px;
+        border: none;
+        background-color: rgb(236, 225, 225);
+        font-size: 1.2rem;
+        margin: 2vh;
+    }
+
+    button{
+        border: none;
+        color: white;
+        background-color: blue  ;
+        font-size: 1.5rem;
+        font-weight: bold;
+        padding: 2vw;
+        margin: 1rem;
+        cursor: pointer;
+    }
+
+    button:hover{
+        color: cyan;
+    }
+
+    :last-child{
+        background-color: red;
+    }
+    :last-child:hover{
+        color: rgb(216, 139, 111);
+    }
+}
+
+.outModal{
+    position:fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.826);
     
 }

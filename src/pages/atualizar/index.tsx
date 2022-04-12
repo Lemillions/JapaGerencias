@@ -23,9 +23,23 @@ export default function Atualizar(props: AtualizarProps){
   const [produtos, setProdutos] = useState(props.produtos)
   const [modal, setModal] = useState<Modal>({"produtoModal":{"nome":"","quantidade":0,"valor":0},estado:false})
   const [modalForm, setModalForm] = useState<ProdutoInfos>({"nome":"","quantidade":0,"valor":0})
+  const [toogleAdicionar, setToogleAdicionar] = useState<boolean>(false)
+  const [modalAdicionar, setModalAdicionar] = useState<ProdutoInfos>({"nome":"","quantidade":0,"valor":0})
 
-  const abrirModal = (produto: ProdutoInfos) => {
+  const toogleModal = (produto: ProdutoInfos) => {
     setModal({"produtoModal":produto, estado:!modal.estado})
+  }
+
+  const adicionarProduto = () => {
+    if(modalAdicionar.nome == "" || modalAdicionar.quantidade <= 0 || modalAdicionar.valor <= 0){
+      alert("Falta preencher um dos elementos")
+    }else{
+      axios.post('https://API-piton.mvsantos2003.repl.co/adicionarProduto', modalAdicionar)
+      .then((response)=>{
+        setProdutos(response.data)
+        setToogleAdicionar(!toogleAdicionar)
+      })
+    }
   }
 
   const atualizarModal = (nome:any) => {
@@ -46,21 +60,46 @@ export default function Atualizar(props: AtualizarProps){
     })
   }
   
+  const changeModalFormA = (e:any) => {
+    setModalAdicionar({
+      ...modalAdicionar,
+      [e.target.name]:e.target.value
+    })
+
+  }
+
   return (  
     <>
 
-    {modal.estado==false?"":
+    {toogleAdicionar == false?"":
+    <div className={styles.outModal} onClick={()=>{}}>
+      <div className={styles.modal}>
+        <input value={modalAdicionar.nome} onChange={(e)=>{changeModalFormA(e)}} name="nome" />
+        <input type='number' value={modalAdicionar.quantidade} onChange={(e)=>{changeModalFormA(e)}} name="quantidade" />
+        <input type='number' value={modalAdicionar.valor} onChange={(e)=>{changeModalFormA(e)}} name="valor" /><br/>
+        <button onClick={({})=>{adicionarProduto()}}>ADICIONAR</button>
+        <button onClick={()=>{setToogleAdicionar(!toogleAdicionar)}}>CANCELAR</button>
+      </div>
+    </div>
+    }
+
+    {modal.estado == false?"":
+      <div className={styles.outModal} onClick={()=>{}}>
         <div className={styles.modal}>
+          <h1>{modal.produtoModal.nome}</h1>
           <input value={modalForm.nome} onChange={(e)=>{changeModalForm(e)}} name="nome" placeholder={modal.produtoModal.nome} />
-          <input value={modalForm.quantidade} onChange={(e)=>{changeModalForm(e)}} name="quantidade" placeholder={modal.produtoModal.quantidade.toString()} />
-          <input value={modalForm.valor} onChange={(e)=>{changeModalForm(e)}} name="valor" placeholder={modal.produtoModal.valor.toString()} />
+          <input type='number' value={modalForm.quantidade} onChange={(e)=>{changeModalForm(e)}} name="quantidade" placeholder={modal.produtoModal.quantidade.toString()} />
+          <input type='number' value={modalForm.valor} onChange={(e)=>{changeModalForm(e)}} name="valor" placeholder={modal.produtoModal.valor.toString()} /><br/>
           <button onClick={({})=>{atualizarModal(modal.produtoModal.nome)}}>ATUALIZAR</button>
           <button onClick={()=>{
             setModal({produtoModal:modal.produtoModal ,estado:!modal.estado})}}>
               CANCELAR
           </button>
         </div>
+      </div>
     }
+
+    <button className={styles.botaoAdicionar} onClick={()=>{setToogleAdicionar(!toogleAdicionar)}}>ADICIONAR</button>
 
     <div className={styles.produtosContainer}>
       <li className={styles.listaProdutos} >
@@ -75,13 +114,13 @@ export default function Atualizar(props: AtualizarProps){
               <div className={styles.nomeDoProduto}>{produto.nome}</div>
               <div className={styles.quantDoProduto}>{produto.quantidade}</div>
               <div className={styles.valorDoProduto}>R$ {produto.valor}</div>
-              <div className={styles.divButao}><button className={styles.botaoAtualizarProduto} onClick={()=>{abrirModal(produto)}}><img src='https://www.svgrepo.com/show/14567/pencil.svg' alt="edit"/></button></div>
+              <div className={styles.divButao}><button className={styles.botaoAtualizarProduto} onClick={()=>{toogleModal(produto)}}><img src='https://www.svgrepo.com/show/14567/pencil.svg' alt="edit"/></button></div>
             </li>
           )
         })
       }
-      aaa
     </div>
+
     </>
   )
 }

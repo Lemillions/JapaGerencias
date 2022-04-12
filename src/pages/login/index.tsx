@@ -32,7 +32,6 @@ export default function Login(){
     const [error, setError] = useState("")
 
     const logar = (dadosLogin: formLogin) => {
-        console.log(dadosLogin)
         if(dadosLogin.user == "" || dadosLogin.senha == ""){
             setError("É necessario preencher o Usuario e senha pra logar!")
         }else{
@@ -46,7 +45,6 @@ export default function Login(){
                     setState({usuario:data.usuario,
                               permissao:data.permisao,
                               historico:data.historico})
-                    console.log(state)
                     router.push('/')
                 }
             })

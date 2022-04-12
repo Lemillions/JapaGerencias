@@ -1,0 +1,41 @@
+.sideBarCompra{
+    float: left;
+    width: 25%;
+    height: 100vh;
+    background-color: pink;
+    h1{
+        text-align: center;
+    }
+}
+.carrinhoContainer{
+    width: 75%;
+    height: 100vh;
+    background-color: green;
+    float: left;
+
+}
+.carrinho{
+    margin: 5% 10%;
+    width: 80%;
+    background-color: gray;
+    float: left;
+    div{
+        height: 20px;
+    }
+
+    .nomeDoProduto{
+        width: 75%;
+        overflow: hidden;
+        float: left;
+    }
+    .quantDoProduto{
+        float: left;
+        width: 5%;
+        margin-right: 5%;
+    }
+    .valorDoProduto{
+        float: left;
+        width: 15%;
+
+    }
+}
