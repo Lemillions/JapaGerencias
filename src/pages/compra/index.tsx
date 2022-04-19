@@ -63,7 +63,7 @@ export default function Compra(props:CompraProps){
       {pesquisa=="" || pesquisa==" "?"":
       produtosPesquisados.map(produto=>{
         return(
-          <div className={styles.resultadoPesquisa} onClick={(e)=>{adicionarAoCarrinho(produto)}}>{produto.nome}</div>
+          <div key={produto.nome} className={styles.resultadoPesquisa} onClick={(e)=>{adicionarAoCarrinho(produto)}}>{produto.nome}</div>
         )
       })
       }
