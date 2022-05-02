@@ -3,7 +3,19 @@ import React, { createContext, ReactNode, useState } from "react";
 type UserInfo = {
     usuario:string;
     permissao:string;
-    historico:Array<Object>;
+    historico:Array<Historico>;
+}
+
+type Historico = {
+    data: string;
+    preco: number;
+    produtos: Array<ProdutoInfos>;
+}
+
+type ProdutoInfos = {
+    nome: string;
+    quantidade: number;
+    valor: number;
 }
 
 type PropsUserInfo = {
@@ -15,11 +27,22 @@ type UsuarioProviderProps = {
     children: ReactNode;
 }
 
+const hist:Historico = {
+    data: "",
+    preco: 0,
+    produtos:[{
+        nome:"",
+        quantidade:0,
+        valor: 0
+    }]
+}
+
+
 const UsuarioInfos = {
     state: {
         usuario: "",
         permissao: "",
-        historico: [{}]
+        historico: [hist]
     },
     setState: () => {}
 }

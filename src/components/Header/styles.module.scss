@@ -1,9 +1,11 @@
 .header{
-    background-color: blue;
+    background-color: #112D4E;
     height: 50px;
     width: 100%;
     
     h1{
+        padding: 5px;
+        color: white;
         width: 70%; 
     }
     .links{  
@@ -11,23 +13,20 @@
         right: 0;
         top: 0;
         height: 50px;
-        background-color: blue;
-        color: white;
+        background-color: #112D4E;
+        color: #D6E6F2;
         padding-top: 0.95rem;
         a{
             margin-right: 0px;
             text-decoration: none;
-            color: white;
+            color: #D6E6F2;
             padding: 1.1rem;
             margin-top: 17px;
         }
         a:hover{
-            background-color: white;
-            color: blue ;
+            background-color: #D6E6F2;
+            color: #112D4E  ;
         }
     }
 
-}
-.teste{
-    background-color: white;
 }

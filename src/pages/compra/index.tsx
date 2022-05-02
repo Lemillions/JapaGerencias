@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { GetStaticProps } from 'next';
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { UserContext } from '../../contexts';
 import styles from './styles.module.scss'
 
@@ -20,11 +20,13 @@ export default function Compra(props:CompraProps){
   const [carrinho, setCarrinho] = useState<ProdutoInfos[]>([])
   const [pesquisa, setPesquisa] = useState('')
   const [produtosPesquisados, setProdutosPesquisados] = useState<ProdutoInfos[]>([])
+  const [valorTotal, setValorTotal] = useState<number>(0)
+  var total = 0
 
   const pesquisar = (query:string) => {
     setPesquisa(query)
     setProdutosPesquisados(produtos.filter(produto => {
-      if(produto.nome.includes(query)){
+      if((produto.nome.toUpperCase()).includes(query.toUpperCase())){
         return produto  
       }
     })
@@ -37,17 +39,34 @@ export default function Compra(props:CompraProps){
     }
   }
 
-  const definirQuant = (nome:any, e:any) => {
-    carrinho[(carrinho.findIndex(produto=> { if(produto.nome == nome) {return nome} }))].quantidade = e.target.value
+  const definirQuant = (nome:any, index:number, e:any) => {
+    console.log(produtos)
+    console.log(carrinho)
+    carrinho[index].quantidade = e.target.value
+    carrinho.map(produto =>{
+      total += produto.valor * produto.quantidade
+    })  
+    setValorTotal(total)
   } 
 
-  const finalizaerCompra = () => {
+  const excluirDoCarrinho = (produtoExcluir: ProdutoInfos) =>{
+    const index =  carrinho.findIndex(produto=> { if(produto.nome == produtoExcluir.nome) {return produtoExcluir.nome} })
+    var copiaCarrinho = [...carrinho]
+    copiaCarrinho.splice(index, 1)
+    setCarrinho(copiaCarrinho) 
+  }
+  /*const finalizaerCompra = () => {
     axios.post('https://api-piton.mvsantos2003.repl.co/comprar', [carrinho, state.usuario])
     .then(()=>{
-
+      const prodHistorico:fds = []
+      carrinho.map(produto=>{
+        prodHistorico.push(produto.nome)
+      })
+      const novoHistorico = {data: '', preco:0, produtos:prodHistorico}
+      state.historico.push(novoHistorico)
       setState({'usuario': state.usuario,
       'permissao': state.permissao,
-      'historico':[...state.historico,carrinho]})
+      'historico':[...state.historico, novoHistorico]})
       alert('Compra realizada com sucesso')
       console.log(state.historico)
     })
@@ -55,25 +74,26 @@ export default function Compra(props:CompraProps){
       console.log(error)
     });
     setCarrinho([])
-  }
+  } */
   return (  
     <>
       <div className={styles.carrinhoContainer}>
-      <input value={pesquisa} onChange={(e)=>{pesquisar(e.target.value)}}/>
+      <input className={styles.barraDePesquisa} value={pesquisa} onChange={(e)=>{pesquisar(e.target.value)}}/>
       {pesquisa=="" || pesquisa==" "?"":
-      produtosPesquisados.map(produto=>{
+      produtosPesquisados.map(produto =>{
         return(
           <div className={styles.resultadoPesquisa} onClick={(e)=>{adicionarAoCarrinho(produto)}}>{produto.nome}</div>
         )
       })
       }
       <div className={styles.carrinho}>
-      {carrinho.map(produto =>{
+      {carrinho.map((produto, index) =>{
         return(
           <li className={styles.listaProdutos} key={produto.nome}>
             <div className={styles.nomeDoProduto}>{produto.nome}</div>
-            <input type='number' className={styles.quantDoProduto} onChange={(e)=>{definirQuant(produto.nome, e)}}/>
+            <input type="number" min="1" className={styles.quantDoProduto} onChange={(e)=>{definirQuant(produto.nome, index, e)}}/>
             <div className={styles.valorDoProduto}>R$ {Math.round(produto.valor)}</div> 
+            <div className={styles.excluirDoCarrinho}><button onClick={()=>{excluirDoCarrinho(produto)}}><img src='https://www.svgrepo.com/show/415784/delete-recycle-bin-trash-bin.svg'/></button></div>
           </li>
           )
         })}
@@ -82,7 +102,8 @@ export default function Compra(props:CompraProps){
 
       <div className={styles.sideBarCompra}>
         <h1>Valor</h1>
-        <button onClick={()=>{finalizaerCompra()}}>FINALIZAR COMPRA</button>
+        <div  className={styles.infoCompra}>TOTAL: R${valorTotal}</div>
+        <button onClick={()=>{/*finalizaerCompra()*/}}>FINALIZAR COMPRA</button>
       </div>
     </>
   )

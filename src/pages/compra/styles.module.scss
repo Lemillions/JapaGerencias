@@ -1,23 +1,55 @@
 .sideBarCompra{
     float: left;
     width: 25%;
-    height: 100vh;
-    background-color: pink;
+    height: calc(100% - 100px);
+    background-color: #D6E6F2;
+    text-align: center;
     h1{
-        text-align: center;
+        color: #112D4E;
+    }
+    button{
+        cursor: pointer;
+        padding: 1.5rem;
+        color: white;
+        border: none;
+        background-color: #112D4E;
     }
 }
 .carrinhoContainer{
     width: 75%;
-    height: 100vh;
-    background-color: green;
+    height: calc(100% - 100px);
+    background-color: #D6E6F2;
     float: left;
+
+    .barraDePesquisa{
+        margin: 2% 15% 0% 15%;
+        height: 3.8rem;
+        width: 70%;
+        font-size: 24px;
+        border: 1px solid blue;
+        padding-left: 5px;
+    }
+    .resultadoPesquisa{
+        cursor: pointer;
+        background-color: #151D3B;
+        margin: 0 15%;
+        height: 3.8rem;
+        width: 70%;
+        font-size: 24px;
+        color: white;
+        border: #112D4E 1px solid;
+    }
+    .resultadoPesquisa:hover{
+        background-color: #D6E6F2;
+        color: #151D3B;
+    }
 
 }
 .carrinho{
+    border: 1px solid black;
     margin: 5% 10%;
     width: 80%;
-    background-color: gray;
+    background-color: white;
     float: left;
     div{
         height: 20px;
@@ -27,15 +59,24 @@
         width: 75%;
         overflow: hidden;
         float: left;
+        margin-right: 2%;
     }
     .quantDoProduto{
         float: left;
-        width: 5%;
-        margin-right: 5%;
+        width: 8%;
+        margin-right: 3%;
+        
     }
     .valorDoProduto{
         float: left;
-        width: 15%;
+        width: 9%;
 
+    }
+    .excluirDoCarrinho{
+        float: left;
+        width: 3%;
+        img{
+            height: 13px    ;
+        }
     }
 }
