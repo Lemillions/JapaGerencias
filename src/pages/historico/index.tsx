@@ -2,7 +2,10 @@ import { useContext } from 'react';
 import { UserContext } from '../../contexts/index'
 import styles from "./styles.module.scss"
 
-
+type produto = {
+  
+}
+type produtos = produto[]
 export default function Historico(){
   const { state }= useContext(UserContext)
   return (  
