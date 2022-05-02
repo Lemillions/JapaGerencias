@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { UserContext } from '../../contexts/index'
-import styles from "../styles.module.scss"
+import styles from "./styles.module.scss"
 
 
 export default function Historico(){
