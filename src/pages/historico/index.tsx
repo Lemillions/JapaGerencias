@@ -7,7 +7,7 @@ export default function Historico(){
   const { state }= useContext(UserContext)
   return (  
     <div className={styles.historicoContainer}>
-      {state.historico.map([venda, index] =>{
+      {state.historico.map([venda:any, index:any] =>{
         <li className={venda} key={index}>
           <div className={quantProdutos}>{venda.produtos.length} Produtos</div>
           <div className={dataDaVenda}>{venda.data}</div>
