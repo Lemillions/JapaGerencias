@@ -6,16 +6,14 @@ export default function Historico(){
   const { state }= useContext(UserContext)
   console.log(state) 
   return (  
-    <div>
-<<<<<<< HEAD
-      {state.historico[0].produtos.map(produto=>{
-        return(
-          <h1>{produto.nome}</h1>
-        )
-      })
-    }
-=======
->>>>>>> 9727bb8e6ed1108615b943631c28227cfecfcf39
+    <div className={styles.historicoContainer}>
+      {state.historico.map([venda, index] =>{
+        <li className={venda} key={index}>
+          <div className={quantProdutos}>{venda.produtos.length} Produtos</div>
+          <div className={dataDaVenda}>{venda.data}</div>
+        </li>
+}
+}
     </div>
   )
 }
