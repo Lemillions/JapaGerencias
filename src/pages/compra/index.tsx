@@ -56,14 +56,15 @@ export default function Compra(props:CompraProps){
     setCarrinho(copiaCarrinho) 
   }
   /*const finalizaerCompra = () => {
-    axios.post('https://api-piton.mvsantos2003.repl.co/comprar', [carrinho, state.usuario])
+    const data = New Date()
+    const hoje = data.toLocaleDateString()
+    const prodHistorico:fds = []
+    carrinho.map(produto=>{
+      prodHistorico.push(produto.nome)
+    })
+    const novoHistorico = {data: hoje, preco:valorTotal, produtos:prodHistorico}
+    axios.post('https://api-piton.mvsantos2003.repl.co/comprar', [novoHistorico, state.usuario])
     .then(()=>{
-      const prodHistorico:fds = []
-      carrinho.map(produto=>{
-        prodHistorico.push(produto.nome)
-      })
-      const novoHistorico = {data: '', preco:0, produtos:prodHistorico}
-      state.historico.push(novoHistorico)
       setState({'usuario': state.usuario,
       'permissao': state.permissao,
       'historico':[...state.historico, novoHistorico]})
