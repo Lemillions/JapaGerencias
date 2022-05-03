@@ -1,0 +1,13 @@
+.historicoContainer{
+    width: 100%;
+    height: 100vh;
+    background-color: RED;
+    font-size: 50px;
+    .venda{
+        div{
+            height: 100px;
+            width: 100px;
+            background-color: green;
+        }
+    }
+}

@@ -55,15 +55,16 @@ export default function Compra(props:CompraProps){
     copiaCarrinho.splice(index, 1)
     setCarrinho(copiaCarrinho) 
   }
-  /*const finalizaerCompra = () => {
-    axios.post('https://api-piton.mvsantos2003.repl.co/comprar', [carrinho, state.usuario])
+  const finalizaerCompra = () => {
+    const data = new Date();
+    const hoje = data.toLocaleDateString()
+    const prodHistorico:Array<ProdutoInfos> = []
+    carrinho.map(produto=>{
+      prodHistorico.push({nome:produto.nome, quantidade:produto.quantidade, valor:produto.valor})
+    })
+    const novoHistorico = {data: hoje, preco:valorTotal, produtos:prodHistorico}
+    axios.post('https://api-piton.mvsantos2003.repl.co/comprar', [novoHistorico, state.usuario])
     .then(()=>{
-      const prodHistorico:fds = []
-      carrinho.map(produto=>{
-        prodHistorico.push(produto.nome)
-      })
-      const novoHistorico = {data: '', preco:0, produtos:prodHistorico}
-      state.historico.push(novoHistorico)
       setState({'usuario': state.usuario,
       'permissao': state.permissao,
       'historico':[...state.historico, novoHistorico]})
@@ -74,7 +75,7 @@ export default function Compra(props:CompraProps){
       console.log(error)
     });
     setCarrinho([])
-  } */
+  } 
   return (  
     <>
       <div className={styles.carrinhoContainer}>

@@ -1,21 +1,24 @@
 import { useContext } from 'react';
 import { UserContext } from '../../contexts/index'
+import styles from "./styles.module.scss"
 
-
+type produto = {
+  
+}
+type produtos = produto[]
 export default function Historico(){
   const { state }= useContext(UserContext)
-  console.log(state) 
+  console.log(state)
   return (  
-    <div>
-<<<<<<< HEAD
-      {state.historico[0].produtos.map(produto=>{
-        return(
-          <h1>{produto.nome}</h1>
+    <div className={styles.historicoContainer}>
+      {state.historico.map((venda, index)=>{
+        return ( 
+          <li className={styles.venda} key={index}>
+            <div className={styles.quantProdutos}>{venda.produtos.length} Produtos</div>
+            <div className={styles.dataDaVenda}>{venda.data}</div>
+          </li>
         )
-      })
-    }
-=======
->>>>>>> 9727bb8e6ed1108615b943631c28227cfecfcf39
+      })}
     </div>
   )
 }
