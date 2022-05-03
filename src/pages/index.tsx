@@ -1,6 +1,3 @@
-import { useContext } from 'react';
-import { UserContext } from '../contexts/index'
-
 export default function Home(){
   
   return (  

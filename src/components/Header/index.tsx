@@ -1,12 +1,10 @@
 import Link from 'next/link';
 import styles from './styles.module.scss';
-import { useRouter } from 'next/router'
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../../contexts'
 
 export function Header(){
     const { state } = useContext(UserContext)
-    const router = useRouter()
     const style = {
         display: state.permissao === "" ? 'none':'',
       }

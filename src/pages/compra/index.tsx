@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { GetStaticProps } from 'next';
-import { useContext, useState, useEffect } from 'react'
+import { useContext, useState } from 'react'
 import { UserContext } from '../../contexts';
 import styles from './styles.module.scss'
 
