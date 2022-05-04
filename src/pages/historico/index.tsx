@@ -27,10 +27,9 @@ export default function Historico(){
             <div className={styles.dataDaVenda}>{venda.data}</div>
           </li>
         )
-   )
           {!listaHistoricoMostrar.includes(index)?"":
             {venda.produtos.map(produto)=>{
-              return <div>{produto.nome}</div>
+              <div>{produto.nome}</div>
           }}  
        }
         )
