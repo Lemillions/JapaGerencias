@@ -104,7 +104,7 @@ export default function Compra(props:CompraProps){
       <div className={styles.sideBarCompra}>
         <h1>Valor</h1>
         <div  className={styles.infoCompra}>TOTAL: R${valorTotal}</div>
-        <button onClick={()=>{/*finalizaerCompra()*/}}>FINALIZAR COMPRA</button>
+        <button onClick={()=>{finalizaerCompra()}}>FINALIZAR COMPRA</button>
       </div>
     </>
   )
