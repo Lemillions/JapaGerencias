@@ -2,16 +2,14 @@ import { useContext, useState } from 'react';
 import { UserContext } from '../../contexts/index'
 import styles from "./styles.module.scss"
 
-type produto = {
-  
-}
-type produtos = produto[]
+type merda = Array<number>
+
 export default function Historico(){
   const { state }= useContext(UserContext)
-  const [listaHistoricoMostrar, setiLstaHistoricoMostrar] = useState([])
+  const [listaHistoricoMostrar, setiLstaHistoricoMostrar] = useState<merda>([])
   var copia = [];
   
-  const mostrarProdutos = (index:number) => {
+  const mostrarProdutos = (index:any) => {
     if(listaHistoricoMostrar.includes(index)){
       copia = [...listaHistoricoMostrar]
       copia.splice(index, 1)
