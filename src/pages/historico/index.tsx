@@ -28,7 +28,7 @@ export default function Historico(){
           </li>
         )
           {!listaHistoricoMostrar.includes(index)?"":
-            {venda.produtos.map(produto)=>{
+            {state.historico[index].produtos.map(produto)=>{
               <div>{produto.nome}</div>
           }}  
        }
