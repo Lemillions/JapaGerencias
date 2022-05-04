@@ -12,7 +12,7 @@ export default function Historico(){
   var copia = [];
   
   const mostrarProdutos = (index:number) => {
-    if(listaHistoricoMostrar.include(index)){
+    if(listaHistoricoMostrar.includes(index)){
       copia = [...listaHistoricoMostrar]
       copia.splice(index, 1)
       setiLstaHistoricoMostrar(copia)
@@ -28,7 +28,7 @@ export default function Historico(){
             <div className={styles.quantProdutos}>{venda.produtos.length} Produtos</div>
             <div className={styles.dataDaVenda}>{venda.data}</div>
           </li>
-          {!listaHistoricoMostrar.include(index)?"":
+          {!listaHistoricoMostrar.includes(index)?"":
             {venda.produtos.map(produto)=>{
               return <div>{produto.nome}</div>
           }}  
