@@ -11,7 +11,7 @@ export default function Historico(){
   const [listaHistoricoMostrar, setiLstaHistoricoMostrar] = useState([])
   var copia = [];
   
-  const mostrarProdutos = (index) => {
+  const mostrarProdutos = (index:number) => {
     if(listaHistoricoMostrar.include(index)){
       copia = [...listaHistoricoMostrar]
       copia.splice(index, 1)
