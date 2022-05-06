@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { UserContext } from '../../contexts/index'
 import styles from "./styles.module.scss"
-
+ 
 type merda = Array<number>
 
 export default function Historico(){
