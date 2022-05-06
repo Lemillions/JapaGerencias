@@ -25,9 +25,7 @@ export default function Historico(){
           <li className={styles.venda} key={index} onClick={()=>{mostrarProdutos(index)}}>
             <div className={styles.quantProdutos}>{venda.produtos.length} Produtos</div>
             <div className={styles.dataDaVenda}>{venda.data}</div>
-          </li>
-        )
-        
+          </li>     
         )
       })}
     </div>
