@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import { useContext, useState } from 'react'
 import { UserContext } from '../../contexts';
 import styles from './styles.module.scss'
@@ -15,6 +15,7 @@ type CompraProps = {
 }
 
 export default function Compra(props:CompraProps){
+  
   const { state, setState } = useContext(UserContext)
   const produtos = props.produtos;
   const [carrinho, setCarrinho] = useState<ProdutoInfos[]>([])
@@ -108,7 +109,7 @@ export default function Compra(props:CompraProps){
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps:GetServerSideProps = async () => {
   const { data } = await axios.get('https://api-piton.mvsantos2003.repl.co/produtos')
 
 
@@ -123,7 +124,6 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       produtos
-    },
-    revalidate: 60
+    }
   }
 }
