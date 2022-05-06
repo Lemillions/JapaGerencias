@@ -40,8 +40,6 @@ export default function Compra(props:CompraProps){
   }
 
   const definirQuant = (nome:any, index:number, e:any) => {
-    console.log(produtos)
-    console.log(carrinho)
     carrinho[index].quantidade = e.target.value
     carrinho.map(produto =>{
       total += produto.valor * produto.quantidade
@@ -69,12 +67,12 @@ export default function Compra(props:CompraProps){
       'permissao': state.permissao,
       'historico':[...state.historico, novoHistorico]})
       alert('Compra realizada com sucesso')
-      console.log(state.historico)
     })
     .catch(function (error: any) {
       console.log(error)
     });
     setCarrinho([])
+    setValorTotal(0)
   } 
   return (  
     <>
