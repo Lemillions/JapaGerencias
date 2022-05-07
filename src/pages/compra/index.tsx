@@ -22,8 +22,7 @@ export default function Compra(props:CompraProps){
   const [pesquisa, setPesquisa] = useState('')
   const [produtosPesquisados, setProdutosPesquisados] = useState<ProdutoInfos[]>([])
   const [valorTotal, setValorTotal] = useState<number>(0)
-  var total = 0
-
+  var total = 0 
   const pesquisar = (query:string) => {
     setPesquisa(query)
     setProdutosPesquisados(produtos.filter(produto => {
@@ -70,7 +69,7 @@ export default function Compra(props:CompraProps){
       alert('Compra realizada com sucesso')
     })
     .catch(function (error: any) {
-      console.log(error)
+      alert(error)
     });
     setCarrinho([])
     setValorTotal(0)
@@ -80,11 +79,14 @@ export default function Compra(props:CompraProps){
       <div className={styles.carrinhoContainer}>
       <input className={styles.barraDePesquisa} value={pesquisa} onChange={(e)=>{pesquisar(e.target.value)}}/>
       {pesquisa=="" || pesquisa==" "?"":
-      produtosPesquisados.map(produto =>{
+      <div className={styles.listaResultados}>
+      {produtosPesquisados.map(produto =>{
         return(
+
           <div key={produto.nome} className={styles.resultadoPesquisa} onClick={(e)=>{adicionarAoCarrinho(produto)}}>{produto.nome}</div>
         )
-      })
+      })}
+      </div>
       }
       <div className={styles.carrinho}>
       {carrinho.map((produto, index) =>{

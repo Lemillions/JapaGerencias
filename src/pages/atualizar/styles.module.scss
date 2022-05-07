@@ -3,17 +3,21 @@
     margin: 0% 10%;
     .listaProdutos{
         div{
-            border: 1px solid black;
+            border: 0.1px solid black;
             float: left;
             text-align: center;
-            background-color: aqua;
-            height: 1.3rem;
+            background-color: hsl(212, 63%, 22%);
+            color: white;
+            height: 1.55rem;
+            overflow: hidden;
+            font-size: large;
         }
         .nomeDoProduto{
-            width: 72%;
+            width: 69%;
             overflow: hidden;
         }
         .quantDoProduto{
+            background-color: hsl(212, 63%, 22%);
             width: 13%;
             
         }
@@ -22,17 +26,20 @@
         }
         .divButao{
             width: 3%;
-
-            .botaoAtualizarProduto{
+            img{
                 height: 100%;
                 width: 100%;
+                overflow: hidden;
+            }
+            .botaoAtualizarProduto{
                 border: none;
                 cursor: pointer;
-                img{
-                    height: 100%;
-                    width: 60%;
-                    overflow: hidden;
-                }
+                background-color: white;
+            }
+            .botaoDeletarProduto{
+                border: none;
+                cursor: pointer;
+                background-color: white;
             }
         }
     }
@@ -56,6 +63,36 @@
     color: #3FC1C9;
 }
 
+.modalDeletar{
+    position: fixed;
+    margin: 15vh 25vw;
+    width: 50vw;
+    height: auto;
+    background-color: white;
+    border-radius: 3px;
+    text-align: center;
+    button{
+        border: none;
+        color: white;
+        background-color: red;
+        font-size: 1.5rem;
+        font-weight: bold;
+        padding: 2vw;
+        margin: 1rem;
+        cursor: pointer;
+    }
+
+    button:hover{
+        color: cyan;
+    }
+
+    :last-child{
+        background-color: rgb(41, 41, 41);
+    }
+    :last-child:hover{
+        color: cyan;
+    }
+}
 .modal{
     position: fixed;
     margin: 5vh 25vw;
@@ -64,7 +101,6 @@
     background-color: white;
     border-radius: 3px;
     text-align: center;
-    z-index: 2;
     h1{
         padding: 10px;
         font-size: 16px;
@@ -74,7 +110,6 @@
         width: 35vw;
         height: 10vh;
         padding: 3px;
-        border: none;
         background-color: rgb(236, 225, 225);
         font-size: 1.2rem;
         margin: 2vh;

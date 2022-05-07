@@ -25,6 +25,7 @@ export default function Historico(){
           <li className={styles.venda} key={index} onClick={()=>{mostrarProdutos(index)}}>
             <div className={styles.quantProdutos}>{venda.produtos.length} Produtos</div>
             <div className={styles.dataDaVenda}>{venda.data}</div>
+            <div className={styles.valorDaVenda}>{venda.preco}</div>
           </li>
           {!listaHistoricoMostrar.includes(index)?"":state.historico[index].produtos.map(produto =>{
             return (

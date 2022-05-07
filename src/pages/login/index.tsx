@@ -49,19 +49,21 @@ export default function Login(){
                 }
             })
             .catch(function (error: any) {
-                console.log(error)
+                alert(error)
             });
         }
     }
 
 
     return(
+        <div className={styles.merda}>
         <div className={styles.loginContainer}>
-            <h1>{state.usuario}</h1>
+            <h1>LOGIN</h1>
             <input value={formLogin.user} onChange={(e)=>{handleLogin(e)}} type="text" name="user" placeholder="Usuario"/>
             <input value={formLogin.senha} onChange={(e)=>{handleLogin(e)}}  type="password" name="senha" placeholder="Senha"/><br/>
             <button onClick={()=>{logar(formLogin)}}>LOGIN</button>
             {error? <div className={styles.avisoError}>{error}</div> : ''}
+        </div>
         </div>
     )
 }

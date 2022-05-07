@@ -24,7 +24,19 @@ export default function Atualizar(props: AtualizarProps){
   const [modal, setModal] = useState<Modal>({"produtoModal":{"nome":"","quantidade":0,"valor":0},estado:false})
   const [modalForm, setModalForm] = useState<ProdutoInfos>({"nome":"","quantidade":0,"valor":0})
   const [toogleAdicionar, setToogleAdicionar] = useState<boolean>(false)
+  const [toogleDeletar, setToogleDeletar] = useState({'nome':"","estado":false})
   const [modalAdicionar, setModalAdicionar] = useState<ProdutoInfos>({"nome":"","quantidade":0,"valor":0})
+
+  const toogleModalDeletar = (produtoNome: string) => {
+    setToogleDeletar({'nome':produtoNome,"estado":!toogleDeletar.estado})
+  }
+
+  const deletarProduto = (produtoNome:string) =>{
+    axios.post('https://api-piton.mvsantos2003.repl.co/deletar', {"nome":produtoNome})
+    .then(()=>{
+      alert(produtoNome +' Apagado com sucesso')
+    })
+  }
 
   const toogleModal = (produto: ProdutoInfos) => {
     setModal({"produtoModal":produto, estado:!modal.estado})
@@ -71,7 +83,7 @@ export default function Atualizar(props: AtualizarProps){
   return (  
     <>
 
-    {toogleAdicionar == false?"":
+    {!toogleAdicionar?"":
     <div className={styles.outModal} onClick={()=>{}}>
       <div className={styles.modal}>
         <input value={modalAdicionar.nome} onChange={(e)=>{changeModalFormA(e)}} name="nome" />
@@ -83,20 +95,31 @@ export default function Atualizar(props: AtualizarProps){
     </div>
     }
 
-    {modal.estado == false?"":
+    {!modal.estado?"":
       <div className={styles.outModal} onClick={()=>{}}>
         <div className={styles.modal}>
           <h1>{modal.produtoModal.nome}</h1>
           <input value={modalForm.nome} onChange={(e)=>{changeModalForm(e)}} name="nome" placeholder={modal.produtoModal.nome} />
           <input type='number' value={modalForm.quantidade} onChange={(e)=>{changeModalForm(e)}} name="quantidade" placeholder={modal.produtoModal.quantidade.toString()} />
           <input type='number' value={modalForm.valor} onChange={(e)=>{changeModalForm(e)}} name="valor" placeholder={modal.produtoModal.valor.toString()} /><br/>
-          <button onClick={({})=>{atualizarModal(modal.produtoModal.nome)}}>ATUALIZAR</button>
+          <button onClick={()=>{atualizarModal(modal.produtoModal.nome)}}>ATUALIZAR</button>
           <button onClick={()=>{
-            setModal({produtoModal:modal.produtoModal ,estado:!modal.estado})}}>
+            setModal({produtoModal:modal.produtoModal ,estado:!modal.estado});setModalForm({"nome":"","quantidade":0,"valor":0})}}>
               CANCELAR
           </button>
         </div>
       </div>
+    }
+
+    {!toogleDeletar.estado?"":
+    <div className={styles.outModal}>
+      <div className={styles.modalDeletar}>
+        <h1>Deletar {toogleDeletar.nome} ?</h1>
+        <p>Tem certeza que quer deletar o produto: {toogleDeletar.nome} ?</p>
+        <button onClick={()=>{deletarProduto(toogleDeletar.nome)}}>DELETAR</button>
+        <button onClick={()=>{setToogleDeletar({"nome":"", estado:false})}}>CANCELAR</button>
+      </div>
+    </div>
     }
 
     <button className={styles.botaoAdicionar} onClick={()=>{setToogleAdicionar(!toogleAdicionar)}}>ADICIONAR</button>
@@ -114,7 +137,8 @@ export default function Atualizar(props: AtualizarProps){
               <div className={styles.nomeDoProduto}>{produto.nome}</div>
               <div className={styles.quantDoProduto}>{produto.quantidade}</div>
               <div className={styles.valorDoProduto}>R$ {produto.valor}</div>
-              <div className={styles.divButao}><button className={styles.botaoAtualizarProduto} onClick={()=>{toogleModal(produto)}}><img src='https://www.svgrepo.com/show/14567/pencil.svg' alt="edit"/></button></div>
+              <div className={styles.divButao}><img className={styles.botaoAtualizarProduto} onClick={()=>{toogleModal(produto)}} src='https://www.svgrepo.com/show/387440/edit-two.svg' alt="edit"/></div>
+              <div className={styles.divButao}><img className={styles.botaoDeletarProduto} onClick={()=>{toogleModalDeletar(produto.nome)}} src='https://www.svgrepo.com/show/387348/delete.svg' alt="delete"/></div>
             </li>
           )
         })

@@ -21,6 +21,12 @@
     background-color: #D6E6F2;
     float: left;
 
+    .listaResultados{
+        margin: 0% 15% 0% 15%;
+        width: 70%;
+        height: 19rem;
+        overflow: auto;
+    }
     .barraDePesquisa{
         margin: 2% 15% 0% 15%;
         height: 3.8rem;
@@ -32,12 +38,13 @@
     .resultadoPesquisa{
         cursor: pointer;
         background-color: #151D3B;
-        margin: 0 15%;
         height: 3.8rem;
-        width: 70%;
+        width: 100%;
         font-size: 24px;
         color: white;
         border: #112D4E 1px solid;
+        overflow: hidden;
+
     }
     .resultadoPesquisa:hover{
         background-color: #D6E6F2;
