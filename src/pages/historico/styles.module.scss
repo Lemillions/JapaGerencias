@@ -1,13 +1,25 @@
 .historicoContainer{
-    width: 100%;
+    width: 80%;
+    margin-left:10%;
+    margin-rigth:10%;
     height: 100vh;
     background-color: RED;
     font-size: 50px;
     .venda{
-        div{
-            height: 100px;
-            width: 100px;
-            background-color: green;
+        width:100%;
+        background-color: BLUE;
+        height: auto;
+        .quantProdutos{
+            float:left;
+            width:40%;
+        }
+        .valorDaVenda{
+            float:left;
+            width:30%;
+        }
+        .DataDaVenda{
+            float:left;
+            width:30%;
         }
     }
 }
