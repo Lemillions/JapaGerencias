@@ -54,7 +54,7 @@ export default function Compra(props:CompraProps){
     setCarrinho(copiaCarrinho) 
   }
   const finalizaerCompra = () => {
-    if(carrinho.lenght < 1){
+    if(carrinho.length < 1){
       alert("Carrinho Vazinho")
     }else{
     const data = new Date();
