@@ -54,6 +54,9 @@ export default function Compra(props:CompraProps){
     setCarrinho(copiaCarrinho) 
   }
   const finalizaerCompra = () => {
+    if(carrinho.lenght < 1){
+      alert("Carrinho Vazinho")
+    }else{
     const data = new Date();
     const hoje = data.toLocaleDateString()
     const prodHistorico:Array<ProdutoInfos> = []
@@ -73,6 +76,7 @@ export default function Compra(props:CompraProps){
     });
     setCarrinho([])
     setValorTotal(0)
+    }
   } 
   return (  
     <>
