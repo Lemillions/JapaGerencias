@@ -32,7 +32,7 @@ export default function Historico(){
               <div key={index+produto.nome} className={styles.produtosListadoHistorico}>
                 <div className={styles.nomeListado}>{produto.nome}</div>
                 <div className={styles.quantidadeListado}>{produto.quantidade}</div>
-                <div className={styles.valorListado}>{produto.valor}</div>
+                <div className={styles.valorListado}>R$ {produto.valor}</div>
               </div>
                )
           })}
