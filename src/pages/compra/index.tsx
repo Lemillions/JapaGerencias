@@ -97,7 +97,7 @@ export default function Compra(props:CompraProps){
         return(
           <li className={styles.listaProdutos} key={produto.nome}>
             <div className={styles.nomeDoProduto}>{produto.nome}</div>
-            <input type="number" min="1" className={styles.quantDoProduto} onChange={(e)=>{definirQuant(produto.nome, index, e)}}/>
+            <input type="number" min="1" defaultValue=1 className={styles.quantDoProduto} onChange={(e)=>{definirQuant(produto.nome, index, e)}}/>
             <div className={styles.valorDoProduto}>R$ {Math.round(produto.valor)}</div> 
             <div className={styles.excluirDoCarrinho}><button onClick={()=>{excluirDoCarrinho(produto)}}><img src='https://www.svgrepo.com/show/415784/delete-recycle-bin-trash-bin.svg'/></button></div>
           </li>
