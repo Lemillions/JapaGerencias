@@ -15,13 +15,14 @@ type CompraProps = {
 }
 
 export default function Compra(props:CompraProps){
-  
+
   const { state, setState } = useContext(UserContext)
   const produtos = props.produtos;
   const [carrinho, setCarrinho] = useState<ProdutoInfos[]>([])
   const [pesquisa, setPesquisa] = useState('')
   const [produtosPesquisados, setProdutosPesquisados] = useState<ProdutoInfos[]>([])
   const [valorTotal, setValorTotal] = useState<number>(0)
+  const [erro, setErro] = useState<string>("")
   var total = 0 
   const pesquisar = (query:string) => {
     setPesquisa(query)
@@ -54,13 +55,20 @@ export default function Compra(props:CompraProps){
     setCarrinho(copiaCarrinho) 
   }
   const finalizaerCompra = () => {
+    carrinho.map(produto=>{
+      if(produto.quantidade < 1){
+        setErro('A quantidade de um produto esta errado')
+      }
+    })
     if(carrinho.length < 1){
-      alert("Carrinho Vazinho")
-    }else{
+      setErro('O carrinho esta vazio')
+    }
+    if(erro == ""){
     const data = new Date();
     const hoje = data.toLocaleDateString()
     const prodHistorico:Array<ProdutoInfos> = []
     carrinho.map(produto=>{
+    
       prodHistorico.push({nome:produto.nome, quantidade:produto.quantidade, valor:produto.valor})
     })
     const novoHistorico = {data: hoje, preco:valorTotal, produtos:prodHistorico}
@@ -76,6 +84,8 @@ export default function Compra(props:CompraProps){
     });
     setCarrinho([])
     setValorTotal(0)
+    }else{
+      alert(erro)
     }
   } 
   return (  
